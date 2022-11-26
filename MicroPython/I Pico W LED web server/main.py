@@ -4,6 +4,7 @@ import ubinascii
 import machine
 import urequests as requests
 import time
+from machine import Pin
 from secrets import secrets
 import socket
 
@@ -84,7 +85,9 @@ s.listen(1)
 
 print('Listening on', addr)
 led = machine.Pin('LED', machine.Pin.OUT)
-
+led2 = Pin(13, Pin.OUT)
+led3 = Pin(14, Pin.OUT)
+led4 = Pin(15, Pin.OUT)
 # Listen for connections
 while True:
     try:
@@ -105,6 +108,44 @@ while True:
         if led_off > -1:
             print('LED OFF')
             led.value(0)
+            
+        led2_on = r.find('?led2=on')
+        led2_off = r.find('?led2=off')
+        print('led2_on = ', led2_on)
+        print('led2_off = ', led2_off)
+        if led2_on > -1:
+            print('LED ON')
+            led2.value(1)
+            
+        if led2_off > -1:
+            print('LED OFF')
+            led2.value(0)
+            
+        led3_on = r.find('?led3=on')
+        led3_off = r.find('?led3=off')
+        print('led3_on = ', led3_on)
+        print('led3_off = ', led3_off)
+        if led3_on > -1:
+            print('LED ON')
+            led3.value(1)
+            
+        if led3_off > -1:
+            print('LED OFF')
+            led3.value(0)
+            
+        led4_on = r.find('?led4=on')
+        led4_off = r.find('?led4=off')
+        print('led4_on = ', led4_on)
+        print('led4_off = ', led4_off)
+        if led4_on > -1:
+            print('LED ON')
+            led4.value(1)
+            
+        if led4_off > -1:
+            print('LED OFF')
+            led4.value(0)
+            
+            
             
         response = get_html('index.html')
         cl.send('HTTP/1.0 200 OK\r\nContent-type: text/html\r\n\r\n')
