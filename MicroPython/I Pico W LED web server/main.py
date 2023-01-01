@@ -1,3 +1,4 @@
+import gc
 import rp2
 import network
 import ubinascii
@@ -88,6 +89,13 @@ led = machine.Pin('LED', machine.Pin.OUT)
 led2 = Pin(13, Pin.OUT)
 led3 = Pin(14, Pin.OUT)
 led4 = Pin(15, Pin.OUT)
+
+# Enable garbage collection
+gc.enable()
+
+# Run garbage collection every 100 requests
+request_count = 0
+
 # Listen for connections
 while True:
     try:
