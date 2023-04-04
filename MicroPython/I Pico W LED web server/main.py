@@ -93,8 +93,8 @@ led4 = Pin(15, Pin.OUT)
 # Enable garbage collection
 gc.enable()
 
-# Run garbage collection every 100 requests
-request_count = 0
+# Run garbage collection every 10 requests
+request_count = 10
 
 # Listen for connections
 while True:
